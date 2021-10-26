@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style type="text/css">
+    #table-1 thead, #table-1 tr {
+      border-top-width: 1px;
+      border-top-style: solid;
+      border-top-color: #a8bfde;
+    }
+
+    #table-1 {
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: #a8bfde;
+    }
+
+    #table-1 td, #table-1 th {
+      padding: 5px 10px;
+      font-size: 12px;
+      font-family: Verdana;
+      color: #5b7da3;
+    }
+
+    #table-1 tr:nth-child(even) {
+      background: #d3dfed
+    }
+
+    #table-1 tr:nth-child(odd) {
+      background: #FFF
+    }
+  </style>
+</head>
+<body>
+<p>hello 欢迎加入 xxx 大家庭，您的入职信息如下：</p>
+<table id="table-1" border="1">
+  <tr>
+    <td>姓名</td>
+    <td th:text="${username}"></td>
+  </tr>
+  <tr>
+    <td>工号</td>
+    <td th:text="${num}"></td>
+  </tr>
+  <tr>
+    <td>薪水</td>
+    <td th:text="${salary}"></td>
+  </tr>
+</table>
+<div style="color: #ff1a0e">一起努力创造辉煌</div>
+</body>
+</html>
