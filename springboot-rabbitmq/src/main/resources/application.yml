@@ -1,0 +1,5 @@
+spring:
+  rabbitmq:
+    username: admin
+    password: admin
+    addresses: 192.168.0.32

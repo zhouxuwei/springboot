@@ -1,0 +1,17 @@
+spring:
+  rabbitmq:
+    username: admin
+    password: admin
+    addresses: 192.168.0.32
+    # 生产者发送消息到交换机，成功或失败进行回调通知 配置 默认none
+    # publisher-confirm-type: correlated
+    # 交换机发送信息到队列如果失败，将消息返还给生产者配置，默认false
+    # publisher-returns: true
+#    listener:
+#      simple:
+#        #消息确认机制更改为手动
+#        acknowledge-mode: manual
+#        #预处理模式更改为每次读取1条消息,在消费者未回执确认之前,不在进行下一条消息的投送
+#        prefetch: 1
+server:
+  port: 8081
