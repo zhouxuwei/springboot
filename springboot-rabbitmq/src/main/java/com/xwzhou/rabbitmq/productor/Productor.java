@@ -6,6 +6,7 @@ import com.xwzhou.rabbitmq.config.TopicConfig;
 import com.xwzhou.rabbitmq.config.XDelayConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -70,6 +71,18 @@ public class Productor {
    */
   public void sendDirectMessage(String message, String routingKey) {
     template.convertAndSend(DirectConfig.DIRECT_EXCHANGE_TEST, routingKey, message);
+    System.out.println("发送的消息为: " + message);
+  }
+
+
+  /**
+   * 发送路由模式消息 应答机制 退回机制
+   *
+   * @param message
+   */
+  public void sendDirectMessageCallBack(String message, String routingKey, String id) {
+    template.convertAndSend(DirectConfig.DIRECT_EXCHANGE_TEST, routingKey, message,
+        new CorrelationData(id));
     System.out.println("发送的消息为: " + message);
   }
 

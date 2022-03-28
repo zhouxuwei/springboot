@@ -2,6 +2,7 @@ package com.xwzhou;
 
 import com.xwzhou.rabbitmq.config.XDelayConfig;
 import com.xwzhou.rabbitmq.productor.Productor;
+import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -55,7 +56,18 @@ class SpringbootRabbitmqApplicationTests {
    */
   @Test
   void directProducer() {
-    productor.sendDirectMessage("路由模式消息！", "direct.C.key");
+    productor.sendDirectMessage("路由模式消息！", "direct.B.key");
+
+  }
+
+  /**
+   * 路由模式  应答机制 退回机制
+   */
+  @Test
+  void directProducerCallBack() throws InterruptedException {
+    productor.sendDirectMessageCallBack("路由模式消息！", "direct.A.key", "123");
+    //当测试方法结束，rabbitmq相关的资源也就关闭了，虽然我们的消息发送出去，但异步的ConfirmCallback却由于资源关闭而出现了上面的问题
+    TimeUnit.SECONDS.sleep(2);
   }
 
   /**
