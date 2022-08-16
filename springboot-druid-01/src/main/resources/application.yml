@@ -42,3 +42,14 @@ spring:
         login-username: admin
         login-password: 123456
         allow: 127.0.0.1
+
+
+# knife4j增强型文档开启（生产环境要关闭）
+# 访问地址：http://localhost:8080/doc.html
+knife4j:
+  # 开启增强配置
+  enable: true
+  # 开启生产环境屏蔽 true
+  production: false
+
+

@@ -54,7 +54,12 @@ springfox:
   documentation:
     swagger-ui:
       enabled: false
+
+
 # knife4j增强型文档开启（生产环境要关闭）
 # 访问地址：http://localhost:8080/doc.html
 knife4j:
-  enable: true
+  # 开启增强配置
+  enable: false
+  # 开启生产环境屏蔽
+  production: false

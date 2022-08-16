@@ -1,8 +1,10 @@
 package com.xwzhou.config;
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
+import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +33,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 @EnableOpenApi
 public class Swagger3Config {
 
+  @Value("${springfox.package:com.xwzhou.controller}")
+  private String path;
   @Autowired
   private Swagger3Properties properties;
 
@@ -42,6 +46,8 @@ public class Swagger3Config {
     return new Docket(DocumentationType.OAS_30)
         .apiInfo(apiInfo())
         .select()
+        .apis(RequestHandlerSelectors.basePackage(path))
+        .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
         .apis(RequestHandlerSelectors.withMethodAnnotation(Operation.class))
         .paths(PathSelectors.any())
         .build();
