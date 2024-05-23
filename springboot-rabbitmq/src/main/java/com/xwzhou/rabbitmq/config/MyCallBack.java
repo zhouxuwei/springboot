@@ -19,6 +19,13 @@ public class MyCallBack implements RabbitTemplate.ConfirmCallback, RabbitTemplat
     rabbitTemplate.setReturnsCallback(this);
   }
 
+  /**
+   * 交换机确认回调方法 发消息 交换机接收信息 回调
+   *
+   * @param correlationData
+   * @param ack
+   * @param cause
+   */
   @Override
   public void confirm(CorrelationData correlationData, boolean ack, String cause) {
     String id = correlationData != null ? correlationData.getId() : "";
@@ -26,6 +33,7 @@ public class MyCallBack implements RabbitTemplate.ConfirmCallback, RabbitTemplat
       System.out.println("交换机接受消息成功,id为：" + id);
     } else {
       System.out.println("交换机接受消息失败,id为：" + id + ",原因：" + cause);
+      //失败应该存表，单独调度再发送
     }
   }
 
